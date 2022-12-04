@@ -43,7 +43,7 @@ export default function SignUp() {
 			const formDataCopy = { ...formData };
 			delete formDataCopy.password;
 			formDataCopy.timestamp = serverTimestamp();
-			formDataCopy.level = 0;
+			formDataCopy.level = 1;
 			formDataCopy.ptsDelta = 0;
 			formDataCopy.points = 0;
 			// Save to the DB with user data
