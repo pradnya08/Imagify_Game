@@ -1,10 +1,12 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import Game from "../components/Game";
 import Popup from "../components/Popup";
 
 export default function Home() {
 	const [popup, setPopup] = useState(true);
+	const navigate = useNavigate();
 
 	return (
 		<>
@@ -17,7 +19,12 @@ export default function Home() {
 						Welcome
 					</h1>
 					<div className='flex flex-col justify-center items-center'>
-						<button className='w-60 mb-3 inline-block bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded'>
+						<button
+							onClick={() => {
+								navigate("/");
+							}}
+							className='w-60 mb-3 inline-block bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded'
+						>
 							How to play????
 						</button>
 						<button

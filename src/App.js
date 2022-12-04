@@ -9,6 +9,7 @@ import Header from "./components/Header";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Leaderboard from "./pages/Leaderboard";
+import HowToPlay from "./pages/HowToPlay";
 
 function App() {
 	return (
@@ -16,12 +17,15 @@ function App() {
 			<Router>
 				<Header />
 				<Routes>
-					<Route path='/' element={<Home />} />
+					<Route path='/' element={<HowToPlay />} />
 					<Route path='/profile' element={<PrivateRoute />}>
 						<Route path='/profile' element={<Profile />} />
 					</Route>
 					<Route path='/leaderboard' element={<PrivateRoute />}>
 						<Route path='/leaderboard' element={<Leaderboard />} />
+					</Route>
+					<Route path='/game' element={<PrivateRoute />}>
+						<Route path='/game' element={<Home />} />
 					</Route>
 					<Route path='/sign-in' element={<SignIn />} />
 					<Route path='/sign-up' element={<SignUp />} />

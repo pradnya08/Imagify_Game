@@ -181,21 +181,10 @@ export default function Game() {
 	async function onClear() {
 		setIsDisable(true);
 		updateScores("clear");
-		// setCurrentLevel(currentLevel + 0.1);
-		// if (currentLevel % 1 === 0) {
-		// 	const user = auth.currentUser;
-		// 	await updateDoc(doc(db, "users", user.uid), { level: currentLevel });
-		// }
 	}
 	async function onBlur() {
 		setIsDisable(true);
 		updateScores("blur");
-		// setCurrentLevel(currentLevel + 0.1);
-		// // if 100 pts current + 1
-		// if (currentLevel % 1 === 0) {
-		// 	const user = auth.currentUser;
-		// 	await updateDoc(doc(db, "users", user.uid), { level: currentLevel });
-		// }
 	}
 	function onNotSure() {
 		setIsDisable(true);
@@ -219,6 +208,17 @@ export default function Game() {
 	}
 	return (
 		<>
+			<div className='flex absolute'>
+				<div className='pl-[150px] mt-[100px] flex justify-start flex-col'>
+					<h1 className='mt-5 font-bold text-lg flex justify-center'>
+						Progress Board:
+					</h1>
+					<p className='font-semibold mb-1'>Delta: {ptsDelta}</p>
+					<p className='font-semibold mb-1'>Score: {currentPoints}</p>
+					<p className='font-semibold mb-1'>Level: {currentLevel}</p>
+					<p className='font-semibold'>Label: {label}</p>
+				</div>
+			</div>
 			<div>
 				<img
 					className='mt-10 max-w-xl mx-auto'
@@ -279,10 +279,7 @@ export default function Game() {
 					Next IMG
 				</button>
 			</div>
-			<div>
-				Delta: {ptsDelta} Score: {currentPoints} Level: {currentLevel} Label:{" "}
-				{label}
-			</div>
+
 			<div>
 				<Popup trigger={levelPopup} setTrigger={setLevelPopup}>
 					<div className='m-10'>
