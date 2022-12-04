@@ -77,7 +77,6 @@ export default function Game() {
 	}
 
 	function levelUp() {
-		console.log("LEVEL UP");
 		const user = auth.currentUser;
 		getDoc(doc(db, "users", user.uid)).then((snapShot) => {
 			updateDoc(doc(db, "users", user.uid), {
@@ -110,7 +109,7 @@ export default function Game() {
 					new_points = currentPoints + new_delta;
 					setCurrentPoints(new_points);
 				}
-				if (new_points !== 0 && new_points >= 50 * currentLevel) {
+				if (new_points !== 0 && new_points >= 100 * currentLevel) {
 					levelUp();
 				}
 				updateDoc(doc(db, "users", user.uid), { points: new_points });
