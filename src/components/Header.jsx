@@ -30,7 +30,7 @@ export default function Header() {
 			<header className='flex justify-between items-center px-3 max-w-6xl mx-auto'>
 				<div>
 					<img
-						src='https://youhost.co.nz/images/logo.png'
+						src='https://www.kindpng.com/picc/m/56-562568_null-floor-cleaning-icon-png-transparent-png.png'
 						alt='logo'
 						className='h-10 cursor-pointer'
 						onClick={() => navigate("/")}
@@ -58,10 +58,10 @@ export default function Header() {
 						{isLoggedIn && (
 							<li
 								className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent 
-						${pathMatchRoute("/people") && "text-black border-b-red-500"}`}
-								onClick={() => navigate("/people")}
+						${pathMatchRoute("/leaderboard") && "text-black border-b-red-500"}`}
+								onClick={() => navigate("/leaderboard")}
 							>
-								People
+								Leaderboard
 							</li>
 						)}
 					</ul>
