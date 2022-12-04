@@ -188,7 +188,6 @@ export default function Game() {
 	}
 	function onNotSure() {
 		setIsDisable(true);
-		console.log("NOT SURE");
 		updateScores("not_sure");
 	}
 	async function reset() {
