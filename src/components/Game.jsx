@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { db } from "../firebase";
 import {
+	arrayRemove,
 	arrayUnion,
 	collection,
 	doc,
 	getDoc,
 	getDocs,
 	query,
+	setDoc,
 	updateDoc,
 	where,
 } from "firebase/firestore";
@@ -52,6 +54,7 @@ export default function Game() {
 		getDocs(q).then((querySnapshot) => {
 			if (!querySnapshot.empty) {
 				const imgs = querySnapshot.docs.map((doc) => doc.data());
+				// console.log(imgs.length)
 				const right_imgs = imgs.filter((img) => {
 					const users = img.users;
 					const fil_users = users.filter(
@@ -82,8 +85,21 @@ export default function Game() {
 			updateDoc(doc(db, "users", user.uid), {
 				level: snapShot.data().level + 1,
 			});
-			setCurrentLevel(snapShot.data().level + 1);
-		});
+			const new_level = snapShot.data().level + 1
+			setCurrentLevel(new_level);
+			const q = query(collection(db, "images"), where("not_sure", "==", new_level - 1));
+			getDocs(q).then((querySnapshot)=>{
+				querySnapshot.forEach((d) => {
+					// console.log("TRYING TO REMOVE", d.id)
+					updateDoc(doc(db, "images", d.id), {
+						users: arrayRemove(auth.currentUser.uid),
+					});
+				})
+			})
+		})
+		
+
+
 		setLevelPopup(true);
 	}
 
@@ -208,14 +224,14 @@ export default function Game() {
 	return (
 		<>
 			<div className='flex absolute'>
-				<div className='pl-[150px] mt-[100px] flex justify-start flex-col'>
+				<div className='pl-[40px] mt-[0px] flex justify-start flex-col'>
 					<h1 className='mt-5 font-bold text-lg flex justify-center'>
 						Progress Board:
 					</h1>
-					<p className='font-semibold mb-1'>Delta: {ptsDelta}</p>
+					{/* <p className='font-semibold mb-1'>Delta: {ptsDelta}</p> */}
 					<p className='font-semibold mb-1'>Score: {currentPoints}</p>
 					<p className='font-semibold mb-1'>Level: {currentLevel}</p>
-					<p className='font-semibold'>Label: {label}</p>
+					{/* <p className='font-semibold'>Label: {label}</p> */}
 				</div>
 			</div>
 			<div>
@@ -254,18 +270,18 @@ export default function Game() {
 					onClick={onBlur}
 					className={
 						isDisable
-							? "w-60 inline-block bg-blue-300 hover:bg-blue-300 text-white font-bold py-2 px-4 border-b-4 border-blue-300 hover:border-blue-300 rounded"
-							: "w-60 inline-block bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
+							? "w-60 mr-4 inline-block bg-blue-300 hover:bg-blue-300 text-white font-bold py-2 px-4 border-b-4 border-blue-300 hover:border-blue-300 rounded"
+							: "w-60 mr-4 inline-block bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded"
 					}
 				>
 					Blur
 				</button>
-				<button
+				{/* <button
 					onClick={reset}
 					className='w-60 inline-block bg-purple-500 hover:bg-purple-400 text-white font-bold py-2 px-4 border-b-4 border-purple-700 hover:border-purple-500 rounded'
 				>
 					Reset
-				</button>
+				</button> */}
 				<button
 					disabled={!isDisable}
 					onClick={getImage}

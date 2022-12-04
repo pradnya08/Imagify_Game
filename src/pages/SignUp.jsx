@@ -44,7 +44,7 @@ export default function SignUp() {
 			delete formDataCopy.password;
 			formDataCopy.timestamp = serverTimestamp();
 			formDataCopy.level = 1;
-			formDataCopy.ptsDelta = 0;
+			formDataCopy.ptsDelta = 1;
 			formDataCopy.points = 0;
 			// Save to the DB with user data
 			await setDoc(doc(db, "users", user.uid), formDataCopy);
