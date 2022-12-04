@@ -8,8 +8,6 @@ import ForgotPassword from "./pages/ForgotPassword";
 import Header from "./components/Header";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import People from "./pages/People";
-import Host from "./pages/Host";
 
 function App() {
 	return (
@@ -20,12 +18,6 @@ function App() {
 					<Route path='/' element={<Home />} />
 					<Route path='/profile' element={<PrivateRoute />}>
 						<Route path='/profile' element={<Profile />} />
-					</Route>
-					<Route path='/people' element={<PrivateRoute />}>
-						<Route path='/people' element={<People />} />
-					</Route>
-					<Route path='/host' element={<PrivateRoute />}>
-						<Route path='/host' element={<Host />} />
 					</Route>
 					<Route path='/sign-in' element={<SignIn />} />
 					<Route path='/sign-up' element={<SignUp />} />
