@@ -12,6 +12,7 @@ import {
 } from "firebase/firestore";
 import { useEffect } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import Popup from "./Popup";
 
 export default function Game() {
 	const [imgSrc, setImgSrc] = useState("");
@@ -22,6 +23,7 @@ export default function Game() {
 	const [ptsDelta, setPtsDelta] = useState(0);
 	const [label, setLabel] = useState("");
 	const auth = getAuth();
+	const [levelPopup, setLevelPopup] = useState(false);
 	useEffect(() => {
 		const listener = onAuthStateChanged(auth, async (user) => {
 			// const user = auth.currentUser;
@@ -83,6 +85,7 @@ export default function Game() {
 			});
 			setCurrentLevel(snapShot.data().level + 1);
 		});
+		setLevelPopup(true);
 	}
 
 	async function changeDelta(change) {
@@ -280,6 +283,15 @@ export default function Game() {
 			<div>
 				Delta: {ptsDelta} Score: {currentPoints} Level: {currentLevel} Label:{" "}
 				{label}
+			</div>
+			<div>
+				<Popup trigger={levelPopup} setTrigger={setLevelPopup}>
+					<div className='m-10'>
+						<h1 className='font-bold text-2xl flex justify-center mb-4'>
+							Congratulations!!! You leveled up
+						</h1>
+					</div>
+				</Popup>
 			</div>
 		</>
 	);
