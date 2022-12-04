@@ -18,7 +18,7 @@ export default function Home() {
 					</h1>
 					<div className='flex flex-col justify-center items-center'>
 						<button className='w-60 mb-3 inline-block bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded'>
-							How to play?
+							How to play????
 						</button>
 						<button
 							onClick={() => {
