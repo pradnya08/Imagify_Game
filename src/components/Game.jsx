@@ -85,20 +85,21 @@ export default function Game() {
 			updateDoc(doc(db, "users", user.uid), {
 				level: snapShot.data().level + 1,
 			});
-			const new_level = snapShot.data().level + 1
+			const new_level = snapShot.data().level + 1;
 			setCurrentLevel(new_level);
-			const q = query(collection(db, "images"), where("not_sure", "==", new_level - 1));
-			getDocs(q).then((querySnapshot)=>{
+			const q = query(
+				collection(db, "images"),
+				where("not_sure", "==", new_level - 1)
+			);
+			getDocs(q).then((querySnapshot) => {
 				querySnapshot.forEach((d) => {
 					// console.log("TRYING TO REMOVE", d.id)
 					updateDoc(doc(db, "images", d.id), {
 						users: arrayRemove(auth.currentUser.uid),
 					});
-				})
-			})
-		})
-		
-
+				});
+			});
+		});
 
 		setLevelPopup(true);
 	}
@@ -115,21 +116,22 @@ export default function Game() {
 				setPtsDelta(new_delta);
 			}
 			updateDoc(doc(db, "users", user.uid), { ptsDelta: new_delta });
-
-			getDoc(doc(db, "users", user.uid)).then((snapShot) => {
-				const old_points = snapShot.data().points;
-				var new_points = 0;
-				if (old_points + new_delta < 0) {
-					setCurrentPoints(0);
-				} else {
-					new_points = currentPoints + new_delta;
-					setCurrentPoints(new_points);
-				}
-				if (new_points !== 0 && new_points >= 100 * currentLevel) {
-					levelUp();
-				}
-				updateDoc(doc(db, "users", user.uid), { points: new_points });
-			});
+			if (ptsDelta > 0) {
+				getDoc(doc(db, "users", user.uid)).then((snapShot) => {
+					const old_points = snapShot.data().points;
+					var new_points = 0;
+					if (old_points + new_delta < 0) {
+						setCurrentPoints(0);
+					} else {
+						new_points = currentPoints + new_delta;
+						setCurrentPoints(new_points);
+					}
+					if (new_points !== 0 && new_points >= 100 * currentLevel) {
+						levelUp();
+					}
+					updateDoc(doc(db, "users", user.uid), { points: new_points });
+				});
+			}
 		});
 	}
 
