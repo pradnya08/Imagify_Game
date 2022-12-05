@@ -297,6 +297,9 @@ export default function Game() {
 					Next IMG
 				</button>
 			</div>
+			<div className='absolute pt-[40px] pl-[20px] text-xs'>
+				<p>All images are taken from google and might have copyrights</p>
+			</div>
 
 			<div>
 				<Popup trigger={levelPopup} setTrigger={setLevelPopup}>
