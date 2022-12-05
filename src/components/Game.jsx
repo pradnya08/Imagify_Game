@@ -293,12 +293,12 @@ export default function Game() {
 				>
 					Blur
 				</button>
-				<button
+				{/* <button
 					onClick={reset}
 					className='w-60 inline-block bg-purple-500 hover:bg-purple-400 text-white font-bold py-2 px-4 border-b-4 border-purple-700 hover:border-purple-500 rounded'
 				>
 					Reset
-				</button>
+				</button> */}
 				<button
 					disabled={!isDisable}
 					onClick={getImage}
