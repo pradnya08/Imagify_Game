@@ -7,7 +7,7 @@ export default function HowToPlay() {
 		<>
 			<div>
 				<h1 className='mt-5 font-bold text-3xl flex justify-center mb-4'>
-					How to play
+					How to play IMAGIFY
 				</h1>
 			</div>
 			<div className='flex justify-center flex-col items-center'>

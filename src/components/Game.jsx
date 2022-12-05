@@ -117,7 +117,7 @@ export default function Game() {
 				setPtsDelta(new_delta);
 			}
 			updateDoc(doc(db, "users", user.uid), { ptsDelta: new_delta });
-			if (ptsDelta > 0) {
+			if (change > 0) {
 				getDoc(doc(db, "users", user.uid)).then((snapShot) => {
 					const old_points = snapShot.data().points;
 					var new_points = 0;
