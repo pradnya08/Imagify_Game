@@ -156,12 +156,26 @@ export default function Game() {
 				changeDelta(6);
 			} else if (d.data().label === "n/a") {
 				if (type === "clear") {
+					if (d.data().clear === 9) {
+						updateDoc(doc(db, "images", d.id), {
+							clear: d.data().clear + 1,
+							label: "clear",
+							users: arrayUnion(auth.currentUser.uid),
+						});
+					}
 					updateDoc(doc(db, "images", d.id), {
 						clear: d.data().clear + 1,
 						users: arrayUnion(auth.currentUser.uid),
 					});
 					changeDelta(4);
 				} else if (type === "blur") {
+					if (d.data().clear === 9) {
+						updateDoc(doc(db, "images", d.id), {
+							clear: d.data().clear + 1,
+							label: "blur",
+							users: arrayUnion(auth.currentUser.uid),
+						});
+					}
 					updateDoc(doc(db, "images", d.id), {
 						blur: d.data().blur + 1,
 						users: arrayUnion(auth.currentUser.uid),
