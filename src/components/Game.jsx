@@ -145,27 +145,27 @@ export default function Game() {
 					users: arrayUnion(auth.currentUser.uid),
 				});
 				// give 10 points
-				changeDelta(10);
+				changeDelta(5);
 			} else if (d.data().label === "blur" && type === "blur") {
 				updateDoc(doc(db, "images", d.id), {
 					blur: d.data().blur + 1,
 					users: arrayUnion(auth.currentUser.uid),
 				});
 				// give 10 points
-				changeDelta(10);
+				changeDelta(6);
 			} else if (d.data().label === "n/a") {
 				if (type === "clear") {
 					updateDoc(doc(db, "images", d.id), {
 						clear: d.data().clear + 1,
 						users: arrayUnion(auth.currentUser.uid),
 					});
-					changeDelta(5);
+					changeDelta(4);
 				} else if (type === "blur") {
 					updateDoc(doc(db, "images", d.id), {
 						blur: d.data().blur + 1,
 						users: arrayUnion(auth.currentUser.uid),
 					});
-					changeDelta(5);
+					changeDelta(4);
 				} else {
 					//no change
 					updateDoc(doc(db, "images", d.id), {
@@ -176,13 +176,13 @@ export default function Game() {
 				//give 5 points
 			} else if (d.data().label === "clear" && type === "blur") {
 				//reduce delta
-				changeDelta(-3);
+				changeDelta(-7);
 				updateDoc(doc(db, "images", d.id), {
 					users: arrayUnion(auth.currentUser.uid),
 				});
 			} else if (d.data().label === "blur" && type === "clear") {
 				//reduce delta
-				changeDelta(-3);
+				changeDelta(-7);
 				updateDoc(doc(db, "images", d.id), {
 					users: arrayUnion(auth.currentUser.uid),
 				});
@@ -230,7 +230,7 @@ export default function Game() {
 					<h1 className='mt-5 font-bold text-lg flex justify-center'>
 						Progress Board:
 					</h1>
-					{/* <p className='font-semibold mb-1'>Delta: {ptsDelta}</p> */}
+					<p className='font-semibold mb-1'>Delta: {ptsDelta}</p>
 					<p className='font-semibold mb-1'>Score: {currentPoints}</p>
 					<p className='font-semibold mb-1'>Level: {currentLevel}</p>
 					{/* <p className='font-semibold'>Label: {label}</p> */}
