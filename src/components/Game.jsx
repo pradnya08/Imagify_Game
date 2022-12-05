@@ -45,16 +45,17 @@ export default function Game() {
 	function getImage() {
 		// Get the image from DB
 		setIsFirst(false);
+		// console.log("LEVEL: ", currentLevel);
 		const q = query(
 			collection(db, "images"),
 			// where("clear", "==", 0),
 			// where("blur", "==", 0),
-			where("not_sure", "<=", currentLevel - 1)
+			where("not_sure", "<=", currentLevel)
 		);
 		getDocs(q).then((querySnapshot) => {
 			if (!querySnapshot.empty) {
 				const imgs = querySnapshot.docs.map((doc) => doc.data());
-				// console.log(imgs.length)
+				// console.log(imgs.length);
 				const right_imgs = imgs.filter((img) => {
 					const users = img.users;
 					const fil_users = users.filter(
@@ -62,7 +63,7 @@ export default function Game() {
 					);
 					return fil_users.length === users.length;
 				});
-				if (!right_imgs.empty) {
+				if (!right_imgs.empty && right_imgs[0]) {
 					setImgSrc(right_imgs[0].src);
 					setLabel(right_imgs[0].label);
 				} else {
@@ -226,7 +227,7 @@ export default function Game() {
 	return (
 		<>
 			<div className='flex absolute'>
-				<div className='pl-[40px] mt-[0px] flex justify-start flex-col'>
+				<div className='pl-[30px] mt-[0px] flex justify-start flex-col'>
 					<h1 className='mt-5 font-bold text-lg flex justify-center'>
 						Progress Board:
 					</h1>
@@ -278,12 +279,12 @@ export default function Game() {
 				>
 					Blur
 				</button>
-				{/* <button
+				<button
 					onClick={reset}
 					className='w-60 inline-block bg-purple-500 hover:bg-purple-400 text-white font-bold py-2 px-4 border-b-4 border-purple-700 hover:border-purple-500 rounded'
 				>
 					Reset
-				</button> */}
+				</button>
 				<button
 					disabled={!isDisable}
 					onClick={getImage}
