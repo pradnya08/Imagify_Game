@@ -145,7 +145,7 @@ export default function Game() {
 					users: arrayUnion(auth.currentUser.uid),
 				});
 				// give 10 points
-				changeDelta(5);
+				changeDelta(6);
 			} else if (d.data().label === "blur" && type === "blur") {
 				updateDoc(doc(db, "images", d.id), {
 					blur: d.data().blur + 1,
