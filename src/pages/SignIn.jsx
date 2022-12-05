@@ -41,7 +41,7 @@ export default function SignIn() {
 			<div className='flex justify-center flex-wrap items-center px-6 py-12 max-w-6xl mx-auto'>
 				<div className='md:w-[67%] lg:w-[50%] mb-12 md:mb-6'>
 					<img
-						src='https://images.unsplash.com/photo-1593697820826-2e76c9720a99?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8cG9kY2FzdHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60'
+						src='https://thumbs.dreamstime.com/b/painted-hand-shows-concept-hologram-data-cleaning-his-hand-painted-hand-shows-concept-hologram-data-cleaning-his-hand-drawn-115398374.jpg'
 						alt='podcast'
 						className='w-full rounded-2xl'
 					/>

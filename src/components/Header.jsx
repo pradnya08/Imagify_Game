@@ -30,7 +30,7 @@ export default function Header() {
 			<header className='flex justify-between items-center px-3 max-w-6xl mx-auto'>
 				<div>
 					<img
-						src='https://www.kindpng.com/picc/m/56-562568_null-floor-cleaning-icon-png-transparent-png.png'
+						src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBJttv3x2BsSyIOzaTS8RyTb5UUShBHdxfcQ&usqp=CAU'
 						alt='logo'
 						className='h-10 cursor-pointer'
 						onClick={() => navigate("/")}
